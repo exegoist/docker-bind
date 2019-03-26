@@ -1,0 +1,13 @@
+version: '3.1'
+services:
+  bind:
+    build: .
+    restart: always
+    volumes:
+      - ./conf:/etc/named
+      - ./P:/var/named/P
+      - ./R:/var/named/R
+    ports:
+      - '53:53/udp'
+      - '53:53/tcp'
+    command: ["named","-c","/etc/named/named.conf","-g","-u","named"] 
